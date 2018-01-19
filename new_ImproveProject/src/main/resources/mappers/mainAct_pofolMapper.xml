@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.server.mapper.mainAct_pofolMapper">
+
+	
+	
+	<insert id="add">
+	<![CDATA[
+	INSERT INTO tbl_pofol(p_type, p_u_id, p_title, p_startdate, p_enddate, p_organizer, p_actcontent)
+	VALUES (#{p_type},#{p_u_id},#{p_title},#{p_startDate},#{p_endDate},	#{p_organizer},#{p_actcontent})
+	]]>
+	</insert>
+	
+	
+
+	<select id="get" parameterType="MainAct_pofol_Impl_Vo" resultType="MainAct_pofol_Impl_Vo">
+	SELECT p_no, p_type, p_u_id, p_regdate, p_title, p_startdate, p_enddate, p_organizer,
+	    p_major, p_completetype, p_examscore, p_language, p_actcontent
+	    FROM tbl_pofol where p_u_id=#{p_u_id} AND p_type=#{p_type} AND p_u_id=#{p_u_id} AND p_title=#{p_title}
+	</select> 
+
+
+	<update id="update"> 
+	<![CDATA[
+	UPDATE tbl_pofol
+		SET
+		 p_title = #{p_title},
+		p_startdate = #{p_startDate},
+		p_enddate = #{p_endDate},
+		p_organizer = #{p_organizer},
+		p_actcontent = #{p_actcontent}
+		WHERE p_no = #{p_no};
+	]]>
+	</update> 
+
+	<delete id="delete">
+		DELETE FROM tbl_pofol WHERE p_no=#{p_no};
+	</delete>
+
+	<select id="getAllById" resultType="MainAct_pofol_Impl_Vo">
+	<![CDATA[
+	SELECT p_no, p_type, p_u_id, p_regdate, p_title, p_startdate, p_enddate, p_organizer,
+	    p_major, p_completetype, p_examscore, p_language, p_actcontent
+	    FROM tbl_pofol where p_u_id=#{p_u_id} 
+	]]>
+	</select>
+
+
+	<select id="getAllByIdAndType" resultType="MainAct_pofol_Impl_Vo">
+	<![CDATA[
+	SELECT p_no, p_type, p_u_id, p_regdate, p_title, p_startdate, p_enddate, p_organizer,
+	    p_major, p_completetype, p_examscore, p_language, p_actcontent
+	    FROM tbl_pofol where p_u_id=#{p_u_id} and p_type=#{p_type}
+	]]>
+	</select>
+	
+	<select id="getMainActList" resultType="MainAct_pofol_Impl_Vo">
+	SELECT p_no, p_type, p_u_id, p_regdate, p_title, p_startdate, p_enddate, p_organizer,
+	    p_major, p_completetype, p_examscore, p_language, p_actcontent
+	    FROM tbl_pofol
+	    <where>
+			p_no in
+			<foreach collection="list" item="item" index="index"
+				separator="," open="(" close=")">
+				#{item.value}
+			</foreach>
+		</where>
+	</select>
+
+
+</mapper>

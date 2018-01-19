@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.server.mapper.multiMediaMapper">
+
+
+
+	<insert id="add">
+		INSERT INTO tbl_multi_media
+		(m_filePath,m_p_no)
+		VALUES(#{m_filePath},#{m_p_no})
+	</insert>
+
+
+	<select id="select" resultType="Multi_Media_VO">
+		SELECT * FROM improve_db.tbl_multi_media
+		WHERE m_p_no = #{m_p_no}
+	</select>
+
+
+	<delete id="delete">
+		DELETE FROM tbl_multi_media WHERE
+		m_filePath=#{m_filePath};
+	</delete>
+
+
+
+</mapper>

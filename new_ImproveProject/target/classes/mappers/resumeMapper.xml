@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.server.mapper.resumeMapper">
+
+
+	<insert id="add" parameterType="java.util.HashMap">
+		INSERT INTO
+		tbl_resume
+		(uniqueResumeKey, rs_u_id)
+		VALUES
+		(#{uniqueResumeKey},#{rs_u_id})
+	</insert>
+
+	<select id="select" parameterType="java.util.HashMap" resultMap="resumeResultMap">
+		SELECT * FROM tbl_resume where
+		uniqueResumeKey=#{uniqueResumeKey} AND
+		rs_u_id=#{rs_u_id}
+	</select>
+
+	<select id="list" parameterType="Resume">
+
+	</select>
+
+
+	<update id="update" parameterType="Resume">
+
+	</update>
+
+
+	<delete id="delete">
+		DELETE FROM tbl_resume
+		WHERE
+		uniqueResumeKey=#{uniqueResumeKey}
+	</delete>
+
+
+
+	<resultMap type="Resume" id="resumeResultMap">
+		<id column="uniqueResumeKey" property="uniqueResumeKey" />
+		<collection property="userVo" select="com.server.mapper.UserMapper.get2"
+			column="{p_u_id=rs_u_id}" javaType="User_Info_Vo"></collection>
+		<collection property="eduList"
+			select="com.server.mapper.pdf_pofolListMapper.getEduList" column="{uniqueResumeKey=uniqueResumeKey,rs_u_id=rs_u_id}"
+			javaType="java.util.ArrayList"></collection>
+		<collection property="awardList"
+			select="com.server.mapper.pdf_pofolListMapper.getAwardList" column="{uniqueResumeKey=uniqueResumeKey,rs_u_id=rs_u_id}"
+			javaType="java.util.ArrayList"></collection>
+		<collection property="languageList"
+			select="com.server.mapper.pdf_pofolListMapper.getLangList" column="{uniqueResumeKey=uniqueResumeKey,rs_u_id=rs_u_id}"
+			javaType="java.util.ArrayList"></collection>
+		<collection property="mainActList"
+			select="com.server.mapper.pdf_pofolListMapper.getMainActList" column="{uniqueResumeKey=uniqueResumeKey,rs_u_id=rs_u_id}"
+			javaType="java.util.ArrayList"></collection>
+		<collection property="militaryList"
+			select="com.server.mapper.pdf_pofolListMapper.getMilitaryList"
+			column="{uniqueResumeKey=uniqueResumeKey,rs_u_id=rs_u_id}" javaType="java.util.ArrayList"></collection>
+		<collection property="qualifiList"
+			select="com.server.mapper.pdf_pofolListMapper.getQualifiList" column="{uniqueResumeKey=uniqueResumeKey,rs_u_id=rs_u_id}"
+			javaType="java.util.ArrayList"></collection>
+
+
+	</resultMap>
+
+
+	<!-- <select id="getEduList" parameterType="java.util.HashMap" resultType="Edu_pofol_Impl_Vo"> 
+		SELECT pofol.* FROM tbl_pofol pofol inner join (SELECT p_no FROM tbl_pdf_edu 
+		where uniqueResumeKey=#{uniqueResumeKey}) pdf_resume ON pofol.p_no=pdf_resume.p_no; 
+		</select> -->
+
+
+
+
+</mapper>

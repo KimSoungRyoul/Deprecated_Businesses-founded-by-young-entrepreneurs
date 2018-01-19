@@ -1,0 +1,60 @@
+#subVisual01 { width:100%; height:425px; overflow:hidden; background:url(../img/sub/subVisual01.jpg) no-repeat center; background-size:cover; }
+#subVisual02 { width:100%; height:425px; overflow:hidden; background:url(../img/sub/subVisual02.jpg) no-repeat center; background-size:cover; }
+#subVisual03 { width:100%; height:425px; overflow:hidden; background:url(../img/sub/subVisual03.jpg) no-repeat center; background-size:cover; }
+#subVisual04 { width:100%; height:425px; overflow:hidden; background:url(../img/sub/subVisual04.jpg) no-repeat center; background-size:cover; }
+#subVisual05 { width:100%; height:425px; overflow:hidden; background:url(../img/sub/subVisual05.jpg) no-repeat center; background-size:cover; }
+#subVisual06 { width:100%; height:425px; overflow:hidden; background:url(../img/sub/subVisual06.jpg) no-repeat center; background-size:cover; }
+.subVisualTaxt h2 { text-align:center; color:#fff; text-transform:uppercase; font-size:66px; line-height:66px; font-weight:bold; margin-top:300px; }
+#subCon { width:1180px; margin:0 auto; min-height:650px; overflow:hidden; padding-top:20px; background: url(../img/sub/line_sub.gif) repeat-y 239px top;}
+#lnb { width:238px; float:left; }
+#lnb h3 { width:200px; height:42px; line-height:42px; background:#339abc url(../img/sub/bullet_lnb_tit.gif) no-repeat 164px center; color:#fff; font-size:18px; text-indent:16px; }
+#lnb ul li { margin-top:45px;}
+#lnb ul li a { font-size:20px; color:#3a3a3a; }
+#lnb ul li.on a { font-size:24px; font-weight:bold; color:#339abc; }
+#subCon > article { width:905px; float:right; overflow:hidden; }
+.navi { width:auto; overflow:hidden; font-size:13px; }
+.navi li { float:left; background:url(../img/sub/bullet_nav.gif) no-repeat 0 center; padding-left:19px; margin-right:9px; color:#9f9f9f; }
+.navi li.pnt { color:#339abc; }
+.navi li:first-child { padding-left:0; width:12px; background:url(../img/sub/icon_home.gif) no-repeat 0 center; text-indent:-9999px; }
+.titleSub { width:100%; overflow:hidden; margin-top:25px; position:relative; padding-bottom:1px; }
+.titleSub h3 { border-bottom:1px solid #828282; font-weight:bold; color:#4e4e4e; font-size:32px; line-height:100%; padding-bottom:20px; }
+.titleSub i { position:absolute; bottom:0; left:0; width:129px; height:4px; background:#339abc; }
+#cont { width:100%; overflow:hidden; margin:40px 0 70px; }
+
+
+.listTb { width:100%; border-top:2px solid #787878; }
+.listTb th { background:#ebf0f4; border-bottom:1px solid #d4d4d4; border-left:1px solid #c6cdd2; height:46px; background:#ebf0f4; color:#3d3d3d; font-size:14px; }
+.listTb th:first-child { border-left:0; } 
+.listTb td { border-bottom:1px solid #d4d4d4; height:49px; font-size:14px; text-align:center; }
+.listTb td.sj { text-align:left; padding-left:20px; }
+.boardBtn { float:right; margin-top:20px; overflow:hidden; }
+.boardBtn a { display:block; float:left; width:56px; height:26px; line-height:26px; text-align:center; color:#fff; background:#526271; border-radius:2px; margin-left:4px; }
+.listNav { clear:both; width:100%; text-align:center; padding-top:30px; }
+.listNav li { display:inline-block; *display:inline; zoom:1; margin:0 1px; }
+.listNav li a { display:block; width:22px; height:29px; text-align:center; line-height:29px; color:#fff; background:#676767; border:1px solid #676767; }
+.listNav li.arrow a { border-color:#dbdbdb; background:#fff; color:#999; }
+
+.humanback {background:#f9f9f9; padding:50px 95px; width:905px; height:280px;}
+.human_img {float:left; width:191px;}
+.human_img p {width:191px; border: 3px solid #eeeef0}
+.human_img span {width:191px; display:block; margin:10px auto; text-align:center}
+.human ul{margin-left:270px; font-size:14px; color:#4e4e4e}
+.human ul li{margin-bottom:25px;}
+.human ul li p{float:left; font-weight:bold; } 
+.human ul li span {margin-left:20px;}
+.human_area {width:100%;  margin:10px auto; text-align:center}
+
+.form ul{ font-size:14px; color:#4e4e4e}
+.form ul li{margin-bottom:25px;}
+.form ul li p{float:left; font-weight:bold; text-align:right ; width:10%;} 
+.form ul li span {margin-left:20px;}
+div.personal_button {width:100%; padding-left:49px;}
+
+p.personal_area {width:780px; margin:10px auto; text-align:center; border-top:1px solid #ddd; padding-top:10px;}
+
+/*textarea*/
+/*
+.text_bar { margin-left:111px;position:relative;z-index:10;height:18px;cursor:s-resize; border:1px solid #ccc; background:#fafafa; font-size:11px; text-align:center }
+.text_bar > span { display:block;visibility:visible;height:18px;font-size:11px;line-height:18px;color:#a0a0a0; }
+.text_bar > span img { vertical-align:middle; }
+*/

@@ -1,0 +1,75 @@
+<script src="http://www.w3schools.com/lib/w3data.js"></script>
+
+<!--header include -->
+<meta charset="UTF-8">
+<div w3-include-html="/pc/inc/header.html"></div> 
+<!--sub 영역-->
+<article id="subVisual05" class="subVisualTaxt">
+	<h2>Login</h2>
+</article>
+<div id="subCon">
+	<nav id="lnb">
+		<h3>Login</h3>
+		<ul>
+			<li class="on"><a href="/pc/sub/login/join.html">- 로그인/회원가입</a></li>
+			<li><a href="/pc/sub/login/mypage.html">- 정보수정</a></li>
+			<li><a href="/pc/sub/login/safeguard.html">- 개인정보취급방침</a></li>
+			<li><a href="/pc/sub/login/agreement.html">- 이용약관</a></li>
+		</ul>
+	</nav>
+	<article>
+		<nav class="navi">
+			<ul>
+				<li>홈</li>
+				<li>Login</li>
+				<li class="pnt">로그인/회원가입</li>
+			</ul>
+		</nav>
+		<div class="titleSub">
+			<h3>로그인/회원가입</h3>
+			<i style="width:220px;">line</i>
+		</div>
+		<!--content 영역-->
+		<div id="cont" class="">
+			<!-- join Start -->
+			<script src="/common/js/member.js" type="text/javascript"></script>
+						<div class="logbox2">
+							<form name="login_form" method="post" action="/common/member/login_ok.php" onsubmit="mainLoginInputSendit();event.returnValue = false;">
+							 <input type="hidden" name="login" value="1">
+							 <input type="hidden" name="login_go" value="">
+								<fieldset>
+									<legend>Login</legend>
+									<div class="cnt">
+										<div class="txtA">
+											<p class="ttl">LOGIN</p>
+											<div class="loginp">
+												<div class="ipt1 ipt"><input type="text" name="userid" placeholder="아이디" style="ime-mode:disabled" value=""></div>
+												<div class="ipt2 ipt"><input type="password" name="passwd" placeholder="비밀번호" onkeyup=" if(event.keyCode == 13)sendit();" onKeydown="mainLoginInputSendit();" value=""></div>
+												<a href="javascript:login_sendit()" class="btn_log">Login</a>
+												<div class="logchkA">
+													<p class="forgottxt" style='width:100%;text-align:right;'>
+														<label><input type="checkbox" name="checksaveid" onClick="SaveId(this.form)"> 아이디/비밀번호기억하기</label>
+													</p>
+													<p class="forgottxt pdT15">
+														<a href="join02.html">회원가입</a> &nbsp;&nbsp; | &nbsp;&nbsp; 
+														<a href="join04.html">아이디 / 비밀번호 찾기</a>
+													</p>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</fieldset>
+							</form>
+						</div>			<!-- //join Start -->
+		</div>
+		<!--//content 영역-->
+	</article>
+</div>
+<!--//sub 영역-->
+
+<!--footer include -->
+<div w3-include-html="/pc/inc/footer.html"></div> 
+<script>
+	w3IncludeHTML();
+</script>

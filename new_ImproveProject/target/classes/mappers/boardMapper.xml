@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.server.mapper.boardMapper">
+
+
+	<delete id="deleteAll">
+		DELETE FROM tbl_board
+	</delete>
+
+
+	<insert id="createBoardLog">
+	<![CDATA[
+		INSERT INTO tbl_board_log_info (b_log_recipient ,b_log_message,b_log_IsRead)
+		VALUES(#{b_log_recipient},#{b_log_message},false)
+	]]>
+	</insert>
+
+
+
+	<select id="getBoardLog" resultType="Board_log_Info_Vo">
+	SELECT * FROM improve_db.tbl_board_log_info where b_log_recipient=#{b_log_recipient};
+	</select>
+	
+	<update id="readBoardLog">
+	UPDATE tbl_board_log_info SET b_log_IsRead = true WHERE b_log_recipient=#{b_log_recipient}
+	</update>
+
+
+
+	<insert id="create">
+	<![CDATA[
+	INSERT INTO tbl_board (b_parent_no,b_title,b_writer,b_content)
+	VALUES (#{b_parent_no},#{b_title},#{b_writer},#{b_content})	
+	]]>
+	</insert>
+
+	<select id="getLastCreate" resultType="Board_Vo">
+		SELECT * FROM improve_db.tbl_board where b_no=LAST_INSERT_ID();
+	</select>
+
+	<insert id="registHashTag">
+		INSERT INTO tbl_hashtag (h_b_no,h_tagname) VALUES
+		(#{h_b_no}, #{h_tagname})
+	</insert>
+
+	<select id="getHashTagList" resultType="Integer">
+		SELECT h_b_no FROM
+		tbl_hashtag where h_tagname=#{hashtag}
+	</select>
+	
+	<select id="getHashTagListForBoard" resultType="String">
+		SELECT h_tagname from tbl_hashtag where h_b_no=#{h_b_no};
+	</select>
+	
+	
+
+	<select id="getMyBoardList" resultType="Board_Vo">
+		SELECT * FROM
+		tbl_board
+		where b_writer=#{b_u_id} AND b_title != ''
+	</select>
+
+
+
+	<select id="getLikeList" resultType="String">
+		SELECT lb_u_id FROM
+		tbl_likeuser_board where lb_b_no=#{b_no}
+	</select>
+
+	<select id="getBoardHashList" resultType="com.server.dto.HashTagDTO">
+		select h_tagname, count(*) as boardCnt from tbl_hashtag GROUP BY h_tagname
+		order by boardCnt desc;
+	</select>
+
+	<select id="getReplyList" resultType="Board_Vo">
+	<![CDATA[
+	SELECT b_no, b_parent_no, b_regdate, b_title, b_writer, b_content FROM tbl_board where b_parent_no=#{b_no}
+	]]>
+	</select>
+
+
+	<select id="get" resultType="Board_Vo">
+		SELECT b_no, b_parent_no, b_regdate,
+		b_title, b_writer, b_content, b_viewcnt
+		FROM tbl_board where
+		b_title=#{b_title}
+	</select>
+	<select id="get2" resultType="Board_Vo">
+		SELECT b_no, b_parent_no, b_regdate,
+		b_title, b_writer, b_content, b_viewcnt
+		FROM tbl_board where
+		b_no=#{b_no}
+	</select>
+
+	<update id="update">
+	<![CDATA[
+	UPDATE tbl_board SET b_no = #{b_no}, b_title = #{b_title}, b_content = #{b_content} 
+	WHERE b_no = #{b_no}
+	]]>
+	</update>
+
+	<select id="delete">
+		DELETE FROM tbl_board WHERE b_no=#{b_no}
+	</select>
+
+	<select id="listPage">
+	<![CDATA[
+	select 
+   	b_no, b_title, b_content, b_writer, b_regdate, b_parent_no
+ 	from 
+   	tbl_board 
+	 where b_no > 0 
+	 order by b_no desc, b_regdate desc
+	 limit #{page}, 10
+	]]>
+	</select>
+
+
+
+	<select id="getReplyCnt" resultType="java.util.HashMap">
+	SELECT count(*) as b_replycnt  FROM tbl_board where b_parent_no=#{b_no}  
+	</select>
+
+
+
+
+
+	<!-- <select id="listCriteria"> <![CDATA[ select b_no, b_title, b_content, 
+		b_writer, b_regdate, b_viewcnt from tbl_board where b_no > 0 order by b_regdate 
+		desc limit #{pageStart}, #{perPageNum} ]]> </select> -->
+
+
+	<sql id="b_noList">
+		<foreach collection="list" item="b_no" separator="," open="("
+			close=")">#{b_no.value}</foreach>
+	</sql>
+
+	<select id="listCriteria" resultType="Board_Vo">
+	<![CDATA[  
+	  select *
+	  from tbl_board 
+	]]>
+		<where>
+			b_no in
+			<foreach collection="list" item="item" index="index"
+				separator="," open="(" close=")">
+				#{item.value}
+			</foreach>
+		</where>
+	<![CDATA[    
+	  order by b_no desc limit #{pageStart}, #{perPageNum}
+	]]>
+	</select>
+
+
+
+
+	<select id="countPaging" resultType="int">
+		SELECT count(*) FROM
+		tbl_hashtag where h_tagname=#{hashtag};
+	</select>
+
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from tbl_board
+		where b_title!='';
+	</select>
+
+
+	<update id="viewplus">
+	<![CDATA[
+	UPDATE
+		tbl_board
+		SET
+		b_viewcnt=b_viewcnt + 1
+		WHERE
+		b_no=#{b_no};
+	]]>
+	</update>
+
+	<update id="likeplus">
+	<![CDATA[
+	INSERT INTO tbl_likeuser_board (lb_u_id, lb_b_no) VALUES (#{lb_u_id}, #{lb_b_no})	
+	]]>
+	</update>
+
+	<select id="listSearch">
+	<![CDATA[
+	select 
+ 	  b_no, b_title, b_content, b_writer, b_regdate, b_viewcnt 
+ 	from 
+ 	  tbl_board 
+ 	where b_no > 0 
+ 	order b_regdate desc
+ 	limit #{pageStart}, #{perPageNum} 	
+	]]>
+	</select>
+
+	<select id="listSearchCount">
+	<![CDATA[
+	]]>
+	</select>
+
+	<select id="updateReplyCnt">
+	<![CDATA[
+	]]>
+	</select>
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.server.mapper.edu_pofolMapper">
+
+	<insert id="add">
+	<![CDATA[
+	INSERT INTO tbl_pofol(p_type,p_u_id,p_title,p_startdate,p_enddate, p_major, p_completetype, p_actcontent)
+	VALUES (#{p_type},#{p_u_id},#{p_title},#{p_startDate},#{p_endDate},	#{p_major}, #{p_completeType}, #{p_actcontent});
+	]]>
+	</insert>
+
+	
+	<select id="getP_noList" resultType="Integer">
+	SELECT p_no FROM tbl_pofol where p_u_id=#{p_u_id}; 
+	</select>
+	
+	
+	 <select id="get" parameterType="Edu_pofol_Impl_Vo" resultType="Edu_pofol_Impl_Vo"> 
+	 SELECT p_no, p_type, p_u_id, p_regdate, p_title, p_startdate, p_enddate, p_organizer,
+	    p_major, p_completetype, p_examscore, p_language, p_actcontent
+	    FROM tbl_pofol where p_u_id=#{p_u_id} AND p_type=#{p_type} AND p_u_id=#{p_u_id} AND p_title=#{p_title}
+	 </select>
+
+
+	<update id="update">
+		<![CDATA[
+		UPDATE tbl_pofol
+		SET
+		p_title = #{p_title},
+		p_startdate = #{p_startDate},
+		p_enddate = #{p_endDate},
+		p_major = #{p_major},
+		p_actcontent= #{p_actcontent},
+		p_completetype = #{p_completeType},
+		p_actcontent=#{p_actcontent}		
+		WHERE p_no = #{p_no}
+		]]>
+	</update>
+
+	<delete id="delete">
+		DELETE FROM tbl_pofol WHERE p_no=#{p_no};
+	</delete>
+
+	<delete id="deleteAll">
+		DELETE FROM tbl_pofol
+	</delete>
+
+	<select id="getAllById" resultType="Edu_pofol_Impl_Vo">
+	<![CDATA[
+	SELECT p_no, p_type, p_u_id, p_regdate, p_title, p_startdate, p_enddate, p_organizer,
+	    p_major, p_completetype, p_examscore, p_language, p_actcontent
+	    FROM tbl_pofol where p_u_id=#{p_u_id} 
+	]]>
+	</select>
+
+
+	<select id="getAllByIdAndType" resultType="Edu_pofol_Impl_Vo">
+	<![CDATA[
+	SELECT p_no, p_type, p_u_id, p_regdate, p_title, p_startdate, p_enddate, p_organizer,
+	    p_major, p_completetype, p_examscore, p_language, p_actcontent
+	    FROM tbl_pofol where p_u_id=#{p_u_id} and p_type=#{p_type}
+	]]>
+	</select>
+	
+	
+	
+	
+	
+	<select id="getPdfEduList" resultType="Edu_pofol_Impl_Vo">
+	 select p_no, p_type, p_u_id, p_regdate, p_title, p_startdate, p_enddate, p_organizer,
+	    p_major, p_completetype, p_examscore, p_language, p_actcontent
+	  FROM tbl_pofol
+	  <where>
+			p_no in
+			<foreach collection="list" item="item" index="index"
+				separator="," open="(" close=")">
+				#{item.value}
+			</foreach>
+		</where>	
+	</select>
+
+
+</mapper>

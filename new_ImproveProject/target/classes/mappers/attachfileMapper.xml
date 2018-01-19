@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.server.mapper.attachMapper">
+
+
+
+	<insert id="add">
+	<![CDATA[
+	INSERT INTO tbl_attach
+	(a_filePath,a_u_id,a_p_no,a_b_no)
+	VALUES( #{a_filePath}, #{a_u_id}, #{a_p_no}, #{a_b_no})
+	]]>
+	</insert>
+
+	<select id="getByA_u_id" resultType="AttachVo"> 
+	<![CDATA[
+	SELECT a_no, a_filePath, a_regdate, a_u_id, a_p_no, a_b_no from tbl_attach 
+	WHERE a_u_id = #{a_u_id} order by a_regdate desc limit 1;	
+	]]>
+	</select> 
+	
+	<select id="getByA_p_no" resultType="AttachVo">
+	<![CDATA[
+	SELECT a_no, a_filePath, a_regdate, a_u_id, a_p_no, a_b_no from tbl_attach 
+	WHERE a_p_no = #{a_p_no}
+	
+	]]>	
+	</select>
+	
+	<select id="getByA_b_no" resultType="AttachVo">
+	<![CDATA[
+	SELECT a_no, a_filePath, a_regdate, a_u_id, a_p_no, a_b_no from tbl_attach 
+	WHERE a_b_no = #{a_b_no}
+	]]>	
+	</select>
+	
+	<delete id="deleteByP_no">
+	DELETE FROM tbl_attach WHERE a_p_no=#{a_p_no}
+	</delete>
+	
+	<delete id="deleteByName">
+	DELETE FROM tbl_attach WHERE a_filePath=#{a_filePath}
+	</delete>
+	
+	
+	<delete id="deleteProfilePhoto">
+	DELETE FROM tbl_attach WHERE a_u_id=#{a_u_id}
+	</delete>
+
+
+</mapper>

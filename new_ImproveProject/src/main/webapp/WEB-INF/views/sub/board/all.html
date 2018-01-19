@@ -1,0 +1,83 @@
+<script src="http://www.w3schools.com/lib/w3data.js"></script>
+
+<!--header include -->
+<meta charset="UTF-8">
+<div w3-include-html="/pc/inc/header.html"></div> 
+<!--sub 영역-->
+<article id="subVisual03" class="subVisualTaxt">
+	<h2>Board</h2>
+</article>
+<div id="subCon">
+	<nav id="lnb">
+		<h3>Board</h3>
+		<ul>
+			<li class="on"><a href="/pc/sub/board/all.html">- 게시판</a></li>			
+		</ul>
+	</nav>
+	<article>
+		<nav class="navi">
+			<ul>
+				<li>홈</li>
+				<li>Board</li>
+				<li class="pnt">전체게시판</li>
+			</ul>
+		</nav>
+		<div class="titleSub">
+			<h3>전체게시판</h3>
+			<i style="width:150px">line</i>
+		</div>
+		<!--content 영역-->
+		<div id="cont" class="">
+			<table class="listTb">
+				<colgroup>
+					<col width="8%"><col width="6%"><col width=""><col width="15%"><col width="12%">
+				</colgroup>
+				<tr>
+					<th>Check</th>
+					<th>No</th>
+					<th>Subject</th>
+					<th>Date</th>
+					<th>Bookmark</th>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>3</td>
+					<td class="sj"><a href="/pc/sub/board/read.html">2016 11월 덕성여대 졸업</a></td>
+					<td>2016-06-30</td>
+					<td><img src="../../img/sub/icon_star.gif" onclick="this.src=this.src.match(/_on/)?'../../img/sub/icon_star.gif':'../../img/sub/icon_star_on.gif';" style='cursor:pointer'></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>2</td>
+					<td class="sj"><a href="/pc/sub/board/read.html">2016 11월 덕성여대 졸업</a></td>
+					<td>2016-06-30</td>
+					<td><img src="../../img/sub/icon_star.gif" onclick="this.src=this.src.match(/_on/)?'../../img/sub/icon_star.gif':'../../img/sub/icon_star_on.gif';" style='cursor:pointer'></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox"></td>
+					<td>1</td>
+					<td class="sj"><a href="/pc/sub/board/read.html">2016 11월 덕성여대 졸업</a></td>
+					<td>2016-06-30</td>
+					<td><img src="../../img/sub/icon_star.gif" onclick="this.src=this.src.match(/_on/)?'../../img/sub/icon_star.gif':'../../img/sub/icon_star_on.gif';" style='cursor:pointer'></td>
+				</tr>
+			</table>
+			<div class="boardBtn">
+				<a href="#;">쓰기</a>
+				<a href="#;">삭제</a>
+			</div>
+			<ul class="listNav">
+				<li class="arrow"><a href="#;">&lt;</a></li>
+				<li><a href="#;">1</a></li>
+				<li class="arrow"><a href="#;">&gt;</a></li>
+			</ul>
+		</div>
+		<!--//content 영역-->
+	</article>
+</div>
+<!--//sub 영역-->
+
+<!--footer include -->
+<div w3-include-html="/pc/inc/footer.html"></div> 
+<script>
+	w3IncludeHTML();
+</script>

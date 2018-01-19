@@ -1,0 +1,169 @@
+<script src="http://www.w3schools.com/lib/w3data.js"></script>
+
+<!--header include -->
+<meta charset="UTF-8">
+<div w3-include-html="/pc/inc/header.html"></div> 
+<!--sub 영역-->
+<article id="subVisual05" class="subVisualTaxt">
+	<h2>Login</h2>
+</article>
+<div id="subCon">
+	<nav id="lnb">
+		<h3>Login</h3>
+		<ul>
+			<li><a href="/pc/sub/login/join.html">- 로그인/회원가입</a></li>
+			<li class="on"><a href="/pc/sub/login/mypage.html">- 정보수정</a></li>
+			<li><a href="/pc/sub/login/safeguard.html">- 개인정보취급방침</a></li>
+			<li><a href="/pc/sub/login/agreement.html">- 이용약관</a></li>
+		</ul>
+	</nav>
+	<article>
+		<nav class="navi">
+			<ul>
+				<li>홈</li>
+				<li>Login</li>
+				<li class="pnt">마이페이지</li>
+			</ul>
+		</nav>
+		<div class="titleSub">
+			<h3>마이페이지</h3>
+			<i style="width:160px">line</i>
+		</div>
+		<!--content 영역-->
+		<div id="cont" class="">
+		<!-- join Start -->
+			<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="/common/js/member.js" type="text/javascript"></script>
+
+		<!--회원 테이블-->
+		<form name="modify_form" method="post" action="/common/member/modify_proc.php" enctype="multipart/form-data">
+		<input type="hidden" name="userid" value="webmoa">
+		<table class="ntb-tb-view" style="width:100%" cellpadding="0" cellspacing="0">
+			<caption>정보수정</caption>
+			<colgroup>
+				<col width="18%" />
+				<col width="82%" />
+			</colgroup>
+			<thead>
+			<tr>
+				<th>성함 *</th>
+				<td class="left"><strong>웹모아</strong></td>
+			</tr>
+			<tr>
+				<th>사업자번호 *</th>
+				<td class="left"><strong>134-86-75244</strong></td>
+			</tr>
+			<tr>
+				<th align="center">아이디 *</th>
+				<td class="left"><strong>webmoa</strong></td>
+			</tr>
+			</thead>
+			<tbody>			
+			<tr class="d-n">
+				<th align="center">회원등급</th>
+				<td class="left">
+				<select name="level" class="AXSelect">
+					<option value='1' >일반회원</option>
+					<option value='2' >특별회원</option>
+				</select></td>
+			</tr>
+			<tr>
+				<th>패스워드 *</th>
+				<td class="left"><input type="password"  name="passwd" value="" class="AXInput W100" style="ime-mode:disabled" maxlength="30">
+				</td>
+			</tr>
+			<tr>
+				<th>패스워드 재확인 *</th>
+				<td class="left"><input type="password"  name="passwd_check" value="" class="AXInput W100" style="ime-mode:disabled" maxlength="30"></td>
+			</tr>
+			
+			<tr>
+				<th>이메일 *</th>
+				<td class="left">
+					<input type="text"  name="email" value="lee7" class="AXInput w20p"> @
+					<input type="text"  name="email2" value="webmoa.co.kr" class="AXInput w20p">
+
+					<label>
+						<select name="email3" id="email3" class="AXSelect">
+							<option value="">직접입력</option>
+							<option value="dreamwiz.co.kr">dreamwiz.co.kr</option>
+							<option value="empal.com">empal.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="lycos.co.kr">lycos.co.kr</option>
+							<option value="naver.com">naver.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="netsgo.com">netsgo.com</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="paran.com">paran.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+						</select>
+					</label>
+
+
+				</td>
+			</tr>
+			<tr>
+				<th>연락처 * </th>
+				<td class="left">
+					<input type="text"  name="tel1" maxlength="4" value="02" class="AXInput W40 taC" style="ime-mode:disabled"> -
+					<input type="text"  name="tel2" maxlength="4" value="838" class="AXInput W40 taC" style="ime-mode:disabled"> -
+					<input type="text"  name="tel3" maxlength="4" value="0085" class="AXInput W40 taC" style="ime-mode:disabled">
+				</td>
+			</tr>
+			<tr>
+				<th>휴대전화 * </th>
+				<td class="left">
+					<select name="phone1" id="phone1" title="앞3자리" class="AXSelect">
+						<option value="010" Selected>010</option>
+						<option value="011" >011</option>
+						<option value="016"  >016</option>
+						<option value="017"  >017</option>
+						<option value="018"  >018</option>
+						<option value="019"  >019</option>
+					</select> - 
+					<input type="text"  name="phone2" maxlength="4" value="1111" class="AXInput W40 taC" style="ime-mode:disabled"> -
+					<input type="text"  name="phone3" maxlength="4" value="2580" class="AXInput W40 taC" style="ime-mode:disabled">
+				</td>
+			</tr>
+			<tr>
+				<th>회사주소 * </th>
+				<td class="left" style="height:86px">
+					<p class="pd3-0">
+						<input type="text" name="com_zip5" id="com_zip5" value="08504" class="AXInput W50" readonly="readonly" />
+						<input type="button" value="우편번호검색" class="AXButtonSmall Classic" onclick="openDaumPostcode(2);" />
+					</p>
+					<p class="pd3-0"><input type="text" name="com_add1" id="com_add1" value="" class="AXInput" readonly="readonly" style="width:90%" /></p>
+					<p class="pd3-0"><input type="text" name="com_add2" id="com_add2" value="" class="AXInput" style="width:90%" /></p>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>메일 정보</th>
+				<td class="left"><input type="checkbox" name="mailing" id="mailing" value="y" Checked="Checked"> <label for="mailing">관련 정보 메일을 수신합니다.</label></td>
+			</tr>
+			<tr>
+				<th>SMS 정보</th>
+				<td class="left"><input type="checkbox" name="sms" id="sms" value="y" > <label for="sms">관련 정보 SMS를 수신합니다.</label></td>
+			</tr>
+			</tbody>
+		</table>
+
+		<div class="ntb-listbtn-area" style="width:100%">
+				<input type="button" value="   확인   " class="AXButton Classic" onclick="modify_sendit()">
+				<input type="button" value="   취소   " class="AXButton" onclick="history.back();">
+				
+		</div>
+
+		</form>			<!-- //join Start -->
+		</div>
+		<!--//content 영역-->
+	</article>
+</div>
+<!--//sub 영역-->
+
+<!--footer include -->
+<div w3-include-html="/pc/inc/footer.html"></div> 
+<script>
+	w3IncludeHTML();
+</script>

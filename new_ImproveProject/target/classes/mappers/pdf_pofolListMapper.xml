@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.server.mapper.pdf_pofolListMapper">
+
+
+
+	<insert id="addEdu" parameterType="java.util.HashMap">
+		INSERT INTO tbl_pdf_edu
+		(uniqueResumeKey,p_no) VALUES
+
+		<foreach collection="p_noList" item="p_noList" separator=",">
+			(#{uniqueResumeKey}, #{p_noList.value})
+		</foreach>
+	</insert>
+
+
+	<insert id="addMainAct" parameterType="java.util.HashMap">
+		INSERT INTO
+		tbl_pdf_mainact (uniqueResumeKey,p_no) VALUES
+		<foreach collection="p_noList" item="p_noList" separator=",">
+			(#{uniqueResumeKey}, #{p_noList.value})
+		</foreach>
+	</insert>
+
+
+	<insert id="addAward" parameterType="java.util.HashMap">
+		INSERT INTO tbl_pdf_award
+		(uniqueResumeKey, p_no) VALUES
+		<foreach collection="p_noList" item="p_noList" separator=",">
+			(#{uniqueResumeKey}, #{p_noList.value})
+		</foreach>
+	</insert>
+
+
+	<insert id="addLang" parameterType="java.util.HashMap">
+		INSERT INTO tbl_pdf_lang
+		(uniqueResumeKey,p_no) VALUES
+		<foreach collection="p_noList" item="p_noList" separator=",">
+			(#{uniqueResumeKey}, #{p_noList.value})
+		</foreach>
+	</insert>
+
+
+	<insert id="addQualifi" parameterType="java.util.HashMap">
+		INSERT INTO
+		tbl_pdf_qualifi (uniqueResumeKey, p_no) VALUES
+		<foreach collection="p_noList" item="p_noList" separator=",">
+			(#{uniqueResumeKey}, #{p_noList.value})
+		</foreach>
+	</insert>
+
+	<insert id="addMilitary" parameterType="java.util.HashMap">
+		INSERT INTO
+		tbl_pdf_qualifi (uniqueResumeKey, p_no) VALUES
+		<foreach collection="p_noList" item="p_noList" separator=",">
+			(#{uniqueResumeKey}, #{p_noList.value})
+		</foreach>
+	</insert>
+
+
+	<select id="getEduList" parameterType="java.util.HashMap"
+		resultMap="eduResultMap">
+		SELECT pofol.* FROM tbl_pofol pofol
+		inner join
+		(SELECT p_no
+		FROM tbl_pdf_edu
+		where uniqueResumeKey=#{uniqueResumeKey})
+		pdf_resume
+		ON
+		pofol.p_no=pdf_resume.p_no and pofol.p_u_id=#{rs_u_id} ORDER BY pofol.p_enddate DESC
+	</select>
+
+	<select id="getMainActList" parameterType="java.util.HashMap"
+		resultMap="mainActResultMap">
+		SELECT pofol.* FROM tbl_pofol pofol
+		inner join
+		(SELECT p_no
+		FROM tbl_pdf_mainact
+		where uniqueResumeKey=#{uniqueResumeKey} group by p_no)
+		pdf_resume
+		ON
+		pofol.p_no=pdf_resume.p_no and pofol.p_u_id=#{rs_u_id}
+	</select>
+
+	<select id="getAwardList" parameterType="java.util.HashMap"
+		resultMap="awardResultMap">
+		SELECT pofol.* FROM tbl_pofol pofol
+		inner join
+		(SELECT p_no
+		FROM tbl_pdf_award
+		where uniqueResumeKey=#{uniqueResumeKey} group by p_no)
+		pdf_resume
+		ON
+		pofol.p_no=pdf_resume.p_no and pofol.p_u_id=#{rs_u_id}
+	</select>
+
+	<select id="getLangList" parameterType="java.util.HashMap"
+		resultMap="langResultMap">
+		SELECT pofol.* FROM tbl_pofol pofol
+		inner join
+		(SELECT p_no
+		FROM tbl_pdf_lang
+		where uniqueResumeKey=#{uniqueResumeKey} group by p_no)
+		pdf_resume
+		ON
+		pofol.p_no=pdf_resume.p_no and pofol.p_u_id=#{rs_u_id}
+	</select>
+
+	<select id="getQualifiList" parameterType="java.util.HashMap"
+		resultMap="qualifiResultMap">
+		SELECT pofol.* FROM tbl_pofol pofol
+		inner join
+		(SELECT p_no
+		FROM tbl_pdf_qualifi
+		where uniqueResumeKey=#{uniqueResumeKey} group by p_no)
+		pdf_resume
+		ON
+		pofol.p_no=pdf_resume.p_no and pofol.p_u_id=#{rs_u_id}
+	</select>
+
+	<select id="getMilitaryList" parameterType="java.util.HashMap"
+		resultMap="militaryResultMap">
+		SELECT pofol.* FROM tbl_pofol pofol
+		inner join
+		(SELECT p_no
+		FROM tbl_pdf_military
+		where uniqueResumeKey=#{uniqueResumeKey} group by p_no)
+		pdf_resume
+		ON
+		pofol.p_no=pdf_resume.p_no and pofol.p_u_id=#{rs_u_id}
+	</select>
+
+
+	<delete id="deleteEdu">
+		DELETE FROM tbl_pdf_edu WHERE
+		p_u_id=#{p_u_id}
+	</delete>
+
+	<delete id="deleteMainAct">
+		DELETE FROM tbl_pdf_mainact WHERE
+		p_u_id=#{p_u_id}
+	</delete>
+
+	<delete id="deleteAward">
+		DELETE FROM tbl_pdf_award WHERE
+		p_u_id=#{p_u_id}
+	</delete>
+
+	<delete id="deleteLang">
+		DELETE FROM tbl_pdf_lang WHERE p_u_id=#{p_u_id}
+	</delete>
+
+	<delete id="deleteQualifi">
+		DELETE FROM tbl_pdf_qualifi WHERE p_u_id=#{p_u_id}
+	</delete>
+
+
+
+	<resultMap type="Edu_pofol_Impl_Vo" id="eduResultMap">
+		<id column="p_no" property="p_no" />
+		<result column="p_type" property="p_type" />
+		<result column="p_u_id" property="p_u_id" />
+		<result column="p_regdate" property="p_regDate" />
+		<result column="p_title" property="p_title" />
+		<result column="p_startdate" property="p_startDate" />
+		<result column="p_enddate" property="p_endDate" />
+		<result column="p_actcontent" property="p_actcontent" />
+		<result column="p_major" property="p_major" />
+		<result column="p_completeType" property="p_completeType" />
+		<collection property="p_attachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.attachMapper.getByA_p_no" javaType="java.util.ArrayList">
+		</collection>
+		<collection property="p_mAttachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.multiMediaMapper.select" javaType="java.util.ArrayList">
+		</collection>
+	</resultMap>
+
+	<resultMap type="MainAct_pofol_Impl_Vo" id="mainActResultMap">
+		<id column="p_no" property="p_no" />
+		<result column="p_type" property="p_type" />
+		<result column="p_u_id" property="p_u_id" />
+		<result column="p_regdate" property="p_regDate" />
+		<result column="p_title" property="p_title" />
+		<result column="p_startdate" property="p_startDate" />
+		<result column="p_enddate" property="p_endDate" />
+		<result column="p_organizer" property="p_organizer" />
+		<result column="p_actcontent" property="p_actcontent" />
+		<collection property="p_attachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.attachMapper.getByA_p_no" javaType="java.util.ArrayList">
+		</collection>
+		<collection property="p_mAttachFileList" column="m_p_no=p_no"
+			select="com.server.mapper.multiMediaMapper.select" javaType="java.util.ArrayList">
+		</collection>
+	</resultMap>
+
+
+	<resultMap type="Award_pofol_Impl_Vo" id="awardResultMap">
+		<id column="p_no" property="p_no" />
+		<result column="p_type" property="p_type" />
+		<result column="p_u_id" property="p_u_id" />
+		<result column="p_regdate" property="p_regDate" />
+		<result column="p_title" property="p_title" />
+		<result column="p_startdate" property="p_startDate" />
+		<result column="p_organizer" property="p_organizer" />
+		<result column="p_actcontent" property="p_actcontent" />
+		<collection property="p_attachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.attachMapper.getByA_p_no" javaType="java.util.ArrayList">
+		</collection>
+		<collection property="p_mAttachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.multiMediaMapper.select" javaType="java.util.ArrayList">
+		</collection>
+	</resultMap>
+
+
+	<resultMap type="Military_pofol_Impl_Vo" id="militaryResultMap">
+		<id column="p_no" property="p_no" />
+		<result column="p_type" property="p_type" />
+		<result column="p_u_id" property="p_u_id" />
+		<result column="p_regdate" property="p_regDate" />
+		<result column="p_title" property="p_title" />
+		<result column="p_startdate" property="p_startDate" />
+		<result column="p_enddate" property="p_endDate" />
+		<result column="p_organizer" property="p_organizer" />
+		<result column="p_actcontent" property="p_actcontent" />
+		<collection property="p_attachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.attachMapper.getByA_p_no" javaType="java.util.ArrayList">
+		</collection>
+		<collection property="p_mAttachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.multiMediaMapper.select" javaType="java.util.ArrayList">
+		</collection>
+	</resultMap>
+
+	<resultMap type="Language_pofol_Impl_Vo" id="langResultMap">
+		<id column="p_no" property="p_no" />
+		<result column="p_type" property="p_type" />
+		<result column="p_u_id" property="p_u_id" />
+		<result column="p_regdate" property="p_regDate" />
+		<result column="p_title" property="p_title" />
+		<result column="p_startdate" property="p_startDate" />
+		<result column="p_organizer" property="p_organizer" />
+		<result column="p_actcontent" property="p_actcontent" />
+		<result column="p_examscore" property="p_examScore" />
+		<result column="p_language" property="p_language" />
+		<collection property="p_attachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.attachMapper.getByA_p_no" javaType="java.util.ArrayList">
+		</collection>
+		<collection property="p_mAttachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.multiMediaMapper.select" javaType="java.util.ArrayList">
+		</collection>
+	</resultMap>
+
+
+	<resultMap type="Qualifi_pofol_Impl_Vo" id="qualifiResultMap">
+		<id column="p_no" property="p_no" />
+		<result column="p_type" property="p_type" />
+		<result column="p_u_id" property="p_u_id" />
+		<result column="p_regdate" property="p_regDate" />
+		<result column="p_title" property="p_title" />
+		<result column="p_startdate" property="p_startDate" />
+		<result column="p_organizer" property="p_organizer" />
+		<result column="p_actcontent" property="p_actcontent" />
+		<collection property="p_attachFileList" column="a_p_no=p_no"
+			select="com.server.mapper.attachMapper.getByA_p_no" javaType="java.util.ArrayList">
+		</collection>
+		<collection property="p_mAttachFileList" column="m_p_no=p_no"
+			select="com.server.mapper.multiMediaMapper.select" javaType="java.util.ArrayList">
+		</collection>
+	</resultMap>
+
+
+
+</mapper>

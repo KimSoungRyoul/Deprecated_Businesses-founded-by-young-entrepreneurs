@@ -1,0 +1,158 @@
+<script src="http://www.w3schools.com/lib/w3data.js"></script>
+
+<!--header include -->
+<meta charset="UTF-8">
+<div w3-include-html="/pc/inc/header.html"></div> 
+<!--sub 영역-->
+<article id="subVisual03" class="subVisualTaxt">
+	<h2>Board</h2>
+</article>
+<div id="subCon">
+	<nav id="lnb">
+		<h3>Board</h3>
+		<ul>
+			<li class="on"><a href="/pc/sub/board/all.html">- 전체게시판</a></li>
+		</ul>
+	</nav>
+	<article>
+		<nav class="navi">
+			<ul>
+				<li>홈</li>
+				<li>Board</li>
+				<li class="pnt">전체게시판</li>
+			</ul>
+		</nav>
+		<div class="titleSub">
+			<h3>전체게시판</h3>
+			<i style="width:150px">line</i>
+		</div>
+		<!--content 영역-->
+		<div id="cont" class="">
+			
+<table class="ntb-tb-view" style="" cellpadding="0" cellspacing="0">
+	<caption>게시판 내용</caption>
+	<colgroup>
+		<col width="18%" />
+		<col width="82%" />
+	</colgroup>
+	<thead>
+	</thead>
+	<tbody>
+	
+
+	<tr>
+		<th>이름</th>
+		<td class="left"><input type="text"  name="name" size="15" maxlength="8" value="웹모아" class="AXInput" /></td>
+	</tr>
+
+	
+		<input type="hidden"  name="pw" value="vision21">
+		
+
+	<tr>
+		<th>이메일</th>
+		<td class="left"><input type="text"  name="email" size="35" maxlength="50" value="webmoa@webmoa.co.kr" class="AXInput" /> 예) abc@webmoa.co.kr</td>
+	</tr>
+
+	<tr>
+		<th>제 목</th>
+		<td class="left"><input type="text"  name="title" style="width:98%" maxlength="200" value="" class="AXInput" /></td>
+	</tr>
+
+	
+	<tr>
+		<th>옵 션</th>
+		<td class="left">
+		<label><input type="checkbox" name="lock" value="1"  class="vmiddle" />비공개글</label>
+		
+		<label><input type="checkbox" name="notice" value="1"  class="vmiddle" />최상단</label>
+		
+		</td>
+	</tr>
+	
+
+	<tr>
+		<td colspan="2"><textarea cols="" rows="" name="content" id="content" style="width:890px; height:250px" class='text_contents'></textarea></td>
+	</tr>
+
+	<!-- 파일첨부 -->
+	<tr>
+		<th>파일첨부1</th>
+		<td class="left">
+		
+		<input type="file"  name="file1" size="33" class="AXInput" /></td>
+	</tr>
+	
+	<tr>
+		<th>파일첨부2</th>
+		<td class="left">
+		
+		<input type="file"  name="file2" size="33" class="AXInput" /></td>
+	</tr>
+	
+	<tr>
+		<th>파일첨부3</th>
+		<td class="left">
+		
+		<input type="file"  name="file3" size="33" class="AXInput" /></td>
+	</tr>
+
+	<!-- //파일첨부 -->
+
+	
+
+	</tbody>
+</table>
+
+<div class="ntb-listbtn-area" style="width:100%">
+		<input type="button" value="   저장   " class="AXButton Classic" onclick="location.href='all.html'">
+		<input type="button" value="   취소   " class="AXButton" onclick="history.back();">
+</div>
+
+</form>
+
+
+		</div>
+		<!--//content 영역-->
+	</article>
+</div>
+<!--//sub 영역-->
+
+<!--textarea script -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+jQuery.fn.resizehandle = function(width) {
+	return this.each(function() {
+		var width1 = width + 7; //환경에 따라 조절
+		var me = jQuery(this);
+		me.after(
+			jQuery('<div class="text_bar" style="margin-left:6px;width:'+width+'px;position:relative;z-index:10;height:18px;cursor:s-resize; border:1px solid #ccc; background:#fafafa; font-size:11px; text-align:center"><span style=" display:block;visibility:visible;height:18px;font-size:11px;line-height:18px;color:#a0a0a0;"><img src="../../img/sub/arrow_textarea.gif" style="vertical-align:middle;"/> 입력창 크기 조절</span></div>')
+				.bind('mousedown', function(e) {
+					var h = me.height();
+					var y = e.clientY;
+					var movehandler = function(e) {
+						me.height(Math.max(40, e.clientY + h - y));
+					};
+					var uphandler = function(e) {
+						jQuery('html').unbind('mousemove',movehandler)
+							.unbind('mouseup',uphandler);
+					};
+					jQuery('html') .bind('mousemove', movehandler)
+						.bind('mouseup', uphandler);
+				})
+            );
+      });
+}
+$(document).ready(function(){
+	var width = $(".text_contents").width() + 3; //textarea width
+	$(".text_contents").resizehandle(width);
+}); 
+
+</script>
+<!--//textarea script -->
+
+<!--footer include -->
+<div w3-include-html="/pc/inc/footer.html"></div> 
+<script>
+	w3IncludeHTML();
+</script>
